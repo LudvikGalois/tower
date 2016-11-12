@@ -24,9 +24,15 @@ public class Parser {
     // [],. characters have normal meaning
     public Command[] parse() throws ParseError {
         if (program != null) return program; // Only need to evaluate once
+
+        program = parseFragment(sourceCode).stream().toArray(Command[]::new);
+        return program;
+    }
+
+    public static ArrayList<Command> parseFragment(String sourceCode) throws ParseError{
         ArrayList<Command> prog = new ArrayList();
         int index = 0;
-        int oldIndex = index;
+        int oldIndex;
         int count;
         while (index < sourceCode.length()) {
             if (Character.isDigit(sourceCode.charAt(index))) {
@@ -76,9 +82,7 @@ public class Parser {
             }
             index++;
         }
-        program = new Command[prog.size()];
-        prog.toArray(program);
-        return program;
+        return prog;
     }
 
 }

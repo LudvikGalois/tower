@@ -18,6 +18,7 @@ public class Main {
         try {
             Command[] res = parser.parse();
             ArrayList<Command> progList = new ArrayList();
+            /*
             progList.addAll(new me.ludvikgalois.tower.floor2.Literal(10).codeGen());
             progList.addAll(new me.ludvikgalois.tower.floor2.Print().codeGen());
             progList.addAll(new me.ludvikgalois.tower.floor2.Next(1).codeGen());
@@ -27,6 +28,13 @@ public class Main {
             progList.addAll(new me.ludvikgalois.tower.floor2.Not().codeGen());
             progList.addAll(new me.ludvikgalois.tower.floor2.Prev(1).codeGen());
             progList.addAll(new me.ludvikgalois.tower.floor2.ShiftRight().codeGen());
+            progList.addAll(new me.ludvikgalois.tower.floor2.Next(1).codeGen());
+            progList.addAll(new me.ludvikgalois.tower.floor2.Or(-1).codeGen());
+            */
+            progList.addAll(new me.ludvikgalois.tower.floor2.Literal(5).codeGen());
+            progList.addAll(new me.ludvikgalois.tower.floor2.Next(1).codeGen());
+            progList.addAll(new me.ludvikgalois.tower.floor2.Literal(6).codeGen());
+            progList.addAll(new me.ludvikgalois.tower.floor2.And(-1).codeGen());
             res = new Command[progList.size()];
             progList.toArray(res);
             Commands[] program = new Compiler(res).compile();

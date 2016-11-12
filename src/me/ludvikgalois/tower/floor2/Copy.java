@@ -1,5 +1,6 @@
 package me.ludvikgalois.tower.floor2;
 
+import me.ludvikgalois.tower.floor1.Parser;
 import me.ludvikgalois.tower.utils.Counter;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * Created by probie on 9/11/16.
  */
 public class Copy extends Command {
-    private int offset;
+    private final int offset;
 
     public Copy (int offset){
         this.offset = offset;

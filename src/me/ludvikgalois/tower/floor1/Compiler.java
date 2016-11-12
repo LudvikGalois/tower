@@ -41,10 +41,15 @@ public class Compiler {
                     prog.add(Commands.OUT);
                     break;
                 default:
+                    assert (c instanceof  ValuedCommand);
                     ValuedCommand vc = (ValuedCommand) c; // Safe to do here
+                    Commands baseInstruction = vc.baseInstruction();
+                    new Counter(vc.getValue()).doTimes(() -> prog.add(baseInstruction));
+                    /*
                     switch (vc.getTag()) {
                         case INC:
-                            for (int i : new Counter(vc.getValue())) prog.add(Commands.INC);
+                            new Counter(vc.getValue()).doTimes(() -> prog.add(Commands.INC));
+ //                           for (int i : new Counter(vc.getValue())) prog.add(Commands.INC);
                             break;
                         case DEC:
                             for (int i : new Counter(vc.getValue())) prog.add(Commands.DEC);
@@ -58,10 +63,10 @@ public class Compiler {
                         default:
                             break; // Shouldn't happen, but just in case
                     }
+                    */
 
             }
-        outputProgram = new Commands[prog.size()];
-        prog.toArray(outputProgram);
+        outputProgram = prog.stream().toArray(Commands[]::new);
         return outputProgram;
     }
 

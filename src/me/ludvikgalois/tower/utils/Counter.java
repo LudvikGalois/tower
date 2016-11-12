@@ -8,10 +8,14 @@ import java.util.NoSuchElementException;
  * Probably not needed - just implemented for fun
  */
 public class Counter implements Iterable <Integer>{
-    private int count;
+    private final int count;
 
     public Counter(int count){
         this.count = count;
+    }
+
+    public void doTimes(Runnable f) {
+        new CounterIter(count).doTimes(f);
     }
 
     private class CounterIter implements Iterator <Integer> {
@@ -32,6 +36,11 @@ public class Counter implements Iterable <Integer>{
             if (!hasNext()) throw new NoSuchElementException();
             return index++;
         }
+
+        public void doTimes(Runnable f) {
+            for (; index < count; index++) f.run();
+        }
+
 
     }
 

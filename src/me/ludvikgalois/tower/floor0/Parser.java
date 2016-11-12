@@ -32,8 +32,7 @@ public class Parser {
                 default: break; // A comment
             }
         }
-        program = new Commands[prog.size()];
-        prog.toArray(program);
+        program = prog.stream().toArray(Commands[]::new);
         return program;
     }
 }
